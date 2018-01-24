@@ -7,6 +7,7 @@ import java.util.SortedMap;
 import java.util.Hashtable;
 import java.util.function.UnaryOperator;
 import interview.IndexedDocument;
+import interview.Document;
 
 /**
 * Holds a list of texts to be searched, and
@@ -17,23 +18,21 @@ public abstract class Searcher {
   //Default filter: remove all characters except alphanumerics and spaces
   private static final String FILTER_DEFAULT = "[^a-zA-Z0-9 ]";
 
-  protected ArrayList<IndexedDocument> texts;
+  protected ArrayList<Document> texts;
   protected UnaryOperator<String> filter;
 
   public Searcher(){
     filter = (s) -> s.replaceAll(FILTER_DEFAULT,"");
-    texts = new ArrayList<IndexedDocument>();
+    texts = new ArrayList<Document>();
   }
 
   /**
-  * Adds a new String document to the list of searched documents
+  * Adds a new String document to the list of searchable documents
   *
   * @param title The title of new document
   * @param content The string content to be searched
   */
-  public void addText(String title, String content){
-    texts.add(new IndexedDocument(title, filter.apply(content)));
-  }
+  abstract void addText(String title, String content);
 
   abstract ArrayList<Result> search(String term);
 

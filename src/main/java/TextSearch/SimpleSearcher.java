@@ -2,6 +2,7 @@ package interview.textsearch;
 
 import java.util.ArrayList;
 import interview.IndexedDocument;
+import interview.Document;
 
 public class SimpleSearcher extends Searcher {
 
@@ -9,10 +10,14 @@ public class SimpleSearcher extends Searcher {
     //We want to use the same filter on the search terms as we used on the text
     String filteredTerm = filter.apply(term);
     ArrayList<Result> results = new ArrayList<Result>();
-    for (IndexedDocument doc : texts) {
+    for (Document doc : texts) {
         results.add(new Result(doc.getTitle(), simpleSearch(filteredTerm, doc.getContent() )));
     }
     return results;
+  }
+
+  public void addText(String title, String content) {
+    texts.add(new Document(title, content));
   }
 
   private static int simpleSearch(String needle, String haystack) {
