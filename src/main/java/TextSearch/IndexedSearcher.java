@@ -36,7 +36,7 @@ public class IndexedSearcher extends Searcher{
     Hashtable<String, Integer> termLocations = new Hashtable();
     List<Integer> allTermLocations = new ArrayList();
 
-    //Need each word in needle and its start location
+    //map each word in the needle to its location in the needle
     Scanner scanner = new Scanner(needle);
     MatchResult result;
     while(scanner.hasNext()) {
@@ -44,8 +44,6 @@ public class IndexedSearcher extends Searcher{
       result = scanner.match();
       termLocations.put(result.group(), result.start());
     }
-
-    int numOfTerms = termLocations.size();
 
     //look up each term in the index and subtract its location in the needle
     for (Map.Entry<String, Integer> term : termLocations.entrySet()) {
@@ -57,19 +55,19 @@ public class IndexedSearcher extends Searcher{
       allTermLocations.addAll(adjustedTermLocations);
     }
 
-    System.out.println("numOfTerms: "+numOfTerms);
-    System.out.println("allTermLocations: "+allTermLocations);
+    int numOfTerms = termLocations.size();
+    //count how many locations are in every list--that's a match
+    return findDuplicateTerms(allTermLocations, numOfTerms).size();
+  }
 
-    //Any number present in all members of allTermLocations represents a match
-    List<Integer> commonTerms = allTermLocations
-                  .stream()
-                  .collect(Collectors.groupingBy( c -> c, Collectors.counting()))
+  //Return list of terms occurring at least n times in the given list
+  private static List<Integer> findDuplicateTerms(List<Integer> list, int n) {
+          return list.stream()
+                  .collect( Collectors.groupingBy( c -> c, Collectors.counting()) )
                   .entrySet()
                   .stream()
-                  .filter( p -> p.getValue() >= numOfTerms )
+                  .filter( p -> p.getValue() >= n )
                   .map( e -> e.getKey() )
                   .collect( Collectors.toList() );
-    System.out.println("Common: "+commonTerms);
-    return commonTerms.size();
   }
 }

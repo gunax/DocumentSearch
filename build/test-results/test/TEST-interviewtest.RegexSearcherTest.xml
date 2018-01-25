@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="interviewtest.RegexSearcherTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2018-01-25T10:37:12" hostname="Jesses-MBP" time="0.004">
+  <properties/>
+  <testcase name="testIgnoresPunctuation" classname="interviewtest.RegexSearcherTest" time="0.003"/>
+  <testcase name="testCaseInsensitive" classname="interviewtest.RegexSearcherTest" time="0.0"/>
+  <testcase name="testSimpleSearchMultipleTexts" classname="interviewtest.RegexSearcherTest" time="0.0"/>
+  <testcase name="testSimpleSearchSingleText" classname="interviewtest.RegexSearcherTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,3 +1,5 @@
+package interviewtest;
+
 import org.junit.*;
 import static org.junit.Assert.*;
 import interview.textsearch.*;

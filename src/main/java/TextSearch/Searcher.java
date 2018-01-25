@@ -11,18 +11,18 @@ import interview.Document;
 
 /**
 * Holds a list of texts to be searched, and
-* provides methods for searching them
+* provides a method for searching them
 */
 public abstract class Searcher {
 
-  //Default filter: remove all characters except alphanumerics and spaces
-  private static final String FILTER_DEFAULT = "[^a-zA-Z0-9 ]";
+  //Filter: remove all characters except alphanumerics and spaces
+  private static final String FILTER_ALPHANUMERIC = "[^a-zA-Z0-9 ]";
 
   protected ArrayList<Document> texts;
   protected UnaryOperator<String> filter;
 
   public Searcher(){
-    filter = (s) -> s.replaceAll(FILTER_DEFAULT,"").toLowerCase();
+    filter = (s) -> s.replaceAll(FILTER_ALPHANUMERIC,"").toLowerCase();
     texts = new ArrayList<Document>();
   }
 
@@ -34,6 +34,11 @@ public abstract class Searcher {
   */
   public abstract void addText(String title, String content);
 
+  /**
+  * Searches the documents for <i>term</i>
+  * @param term The token to search for
+  * @return ArrayList of titles and the # of occurrences of <i>term</i>
+  */
   public abstract ArrayList<Result> search(String term);
 
   public class Result {
