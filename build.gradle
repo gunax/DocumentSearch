@@ -41,6 +41,11 @@ jar {
     }
 }
 
+test {
+  testLogging {
+    showStandardStreams = true
+  }
+}
 
 run{
     standardInput = System.in

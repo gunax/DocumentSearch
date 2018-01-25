@@ -17,7 +17,7 @@ public class SimpleSearcher extends Searcher {
   }
 
   public void addText(String title, String content) {
-    texts.add(new Document(title, content));
+    texts.add(new Document(title, filter.apply(content)));
   }
 
   private static int simpleSearch(String needle, String haystack) {

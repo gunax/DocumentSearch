@@ -22,7 +22,7 @@ public abstract class Searcher {
   protected UnaryOperator<String> filter;
 
   public Searcher(){
-    filter = (s) -> s.replaceAll(FILTER_DEFAULT,"");
+    filter = (s) -> s.replaceAll(FILTER_DEFAULT,"").toLowerCase();
     texts = new ArrayList<Document>();
   }
 
@@ -32,9 +32,9 @@ public abstract class Searcher {
   * @param title The title of new document
   * @param content The string content to be searched
   */
-  abstract void addText(String title, String content);
+  public abstract void addText(String title, String content);
 
-  abstract ArrayList<Result> search(String term);
+  public abstract ArrayList<Result> search(String term);
 
   public class Result {
     private String title;
@@ -48,6 +48,9 @@ public abstract class Searcher {
     }
     public String getTitle() {
       return title;
+    }
+    public String toString() {
+      return title+": "+count;
     }
   }
 }

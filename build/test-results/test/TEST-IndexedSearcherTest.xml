@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="IndexedSearcherTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2018-01-25T10:00:43" hostname="Jesses-MBP" time="0.071">
+  <properties/>
+  <testcase name="testIgnoresPunctuation" classname="IndexedSearcherTest" time="0.056"/>
+  <testcase name="testCaseInsensitive" classname="IndexedSearcherTest" time="0.009"/>
+  <testcase name="testSimpleSearchMultipleTexts" classname="IndexedSearcherTest" time="0.002"/>
+  <testcase name="testSimpleSearchSingleText" classname="IndexedSearcherTest" time="0.001"/>
+  <system-out><![CDATA[numOfTerms: 1
+allTermLocations: [0, 18]
+Common: [0, 18]
+numOfTerms: 1
+allTermLocations: [0]
+Common: [0]
+numOfTerms: 1
+allTermLocations: [0, 18]
+Common: [0, 18]
+numOfTerms: 1
+allTermLocations: [0]
+Common: [0]
+numOfTerms: 1
+allTermLocations: [0, 18]
+Common: [0, 18]
+numOfTerms: 1
+allTermLocations: [0]
+Common: [0]
+numOfTerms: 1
+allTermLocations: [0, 18]
+Common: [0, 18]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

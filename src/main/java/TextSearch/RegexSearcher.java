@@ -19,7 +19,7 @@ public class RegexSearcher extends Searcher {
   }
 
   public void addText(String title, String content) {
-    texts.add(new Document(title, content));
+    texts.add(new Document(title, filter.apply(content)));
   }
 
   private static int regexSearch(String needle, String haystack) {
