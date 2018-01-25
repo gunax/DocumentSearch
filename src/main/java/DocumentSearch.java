@@ -7,6 +7,8 @@ import java.nio.file.DirectoryStream;
 import java.io.File;
 import java.util.Scanner;
 import java.nio.file.Files;
+import java.util.Collections;
+import java.util.List;
 
 /**
 * DocumentSearch takes a directory containing space-separated .txt documents
@@ -26,6 +28,7 @@ public class DocumentSearch {
     File directory = new File(directoryString);
     File[] files = directory.listFiles();
 
+    //load files as Strings in the given directory, skipping non-.txt
     try {
       for (File file : files) {
         String title = file.getName();
@@ -54,17 +57,24 @@ public class DocumentSearch {
       long timeBefore = System.currentTimeMillis();
       switch(method){
         case "1":
-          System.out.println(simpleSearcher.search(term));
+          printResults(simpleSearcher.search(term));
           break;
         case "2":
-          System.out.println(regexSearcher.search(term));
+          printResults(regexSearcher.search(term));
           break;
         case "3":
-          System.out.println(indexedSearcher.search(term));
+          printResults(indexedSearcher.search(term));
           break;
         }
       System.out.println("Your search took "+(System.currentTimeMillis()-timeBefore)+" ms.");
     } while(method.equals("1") || method.equals("2") || method.equals("3"));
+  }
+
+  private static void printResults(List<Searcher.Result> results) {
+    Collections.sort(results);
+    for (Searcher.Result result : results) {
+      System.out.println(result);
+    }
   }
 
   public static void main(String[] args) {

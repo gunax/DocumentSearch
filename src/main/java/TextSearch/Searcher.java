@@ -41,7 +41,7 @@ public abstract class Searcher {
   */
   public abstract ArrayList<Result> search(String term);
 
-  public class Result {
+  public class Result implements Comparable<Result> {
     private String title;
     private int count;
     public Result(String title, int count) {
@@ -56,6 +56,9 @@ public abstract class Searcher {
     }
     public String toString() {
       return title+": "+count;
+    }
+    public int compareTo(Result other) {
+      return other.getCount() - getCount();
     }
   }
 }
