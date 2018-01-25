@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.ArrayList;
 
 public class IndexedSearcher extends Searcher{
+  
   public ArrayList<Result> search(String term) {
     //We want to use the same filter on the search terms as we used on the text
     String filteredTerm = filter.apply(term);
