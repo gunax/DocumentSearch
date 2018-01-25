@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import interview.IndexedDocument;
 import interview.Document;
 
+/*
+* Simple match-based searching. Searching string length m for instances
+* of string length n takes O(m*n) time.
+*/
 public class SimpleSearcher extends Searcher {
 
   public ArrayList<Result> search(String term) {

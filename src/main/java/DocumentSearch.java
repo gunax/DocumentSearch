@@ -8,6 +8,10 @@ import java.io.File;
 import java.util.Scanner;
 import java.nio.file.Files;
 
+/**
+* DocumentSearch takes a directory containing space-separated .txt documents
+* and allows the user to seach them for occurrences of a given String
+*/
 public class DocumentSearch {
 
   private Searcher simpleSearcher, regexSearcher, indexedSearcher;
@@ -25,6 +29,9 @@ public class DocumentSearch {
     try {
       for (File file : files) {
         String title = file.getName();
+        if (!title.endsWith(".txt")) {
+          continue;
+        }
         String content = new String(Files.readAllBytes(file.toPath()));
         simpleSearcher.addText(file.getName(), content);
         regexSearcher.addText(file.getName(), content);
@@ -36,18 +43,27 @@ public class DocumentSearch {
     }
 
     Scanner in = new Scanner(System.in);
+
+    //Loop until user enters invalid method
     do {
       System.out.println("Enter Search Term: ");
       term = in.nextLine();
       System.out.println("Search Method: \n\t1) String Match:"+
                           "\n\t2) Regex: \n\t3) Indexed: ");
       method = in.nextLine();
-      if (method.equals("1"))
-        System.out.println(simpleSearcher.search(term));
-      else if (method.equals("2"))
-        System.out.println(regexSearcher.search(term));
-      else if (method.equals("3"))
-        System.out.println(indexedSearcher.search(term));
+      long timeBefore = System.currentTimeMillis();
+      switch(method){
+        case "1":
+          System.out.println(simpleSearcher.search(term));
+          break;
+        case "2":
+          System.out.println(regexSearcher.search(term));
+          break;
+        case "3":
+          System.out.println(indexedSearcher.search(term));
+          break;
+        }
+      System.out.println("Your search took "+(System.currentTimeMillis()-timeBefore)+" ms.");
     } while(method.equals("1") || method.equals("2") || method.equals("3"));
   }
 

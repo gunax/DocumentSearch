@@ -13,6 +13,10 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.Collections;
 
+/*
+* Hashtable-based index searching. Searching string length m for instances
+* of string length n takes O(n) time.
+*/
 public class IndexedSearcher extends Searcher{
 
   public ArrayList<Result> search(String term) {
@@ -33,8 +37,8 @@ public class IndexedSearcher extends Searcher{
   * if all n occur in sequence in the haystack by examining their location indexes
   */
   private static int indexedSearch(String needle, IndexedDocument haystack) {
-    Hashtable<String, Integer> termLocations = new Hashtable();
-    List<Integer> allTermLocations = new ArrayList();
+    Hashtable<String, Integer> termLocations = new Hashtable<String,Integer>();
+    List<Integer> allTermLocations = new ArrayList<Integer>();
 
     //map each word in the needle to its location in the needle
     Scanner scanner = new Scanner(needle);

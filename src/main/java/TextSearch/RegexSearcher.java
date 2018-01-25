@@ -6,6 +6,10 @@ import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 import java.util.ArrayList;
 
+/*
+* Regex-based searching. Searching string length m for instances
+* of string length n takes O(m+n) time.
+*/
 public class RegexSearcher extends Searcher {
 
   public ArrayList<Result> search(String term) {
