@@ -43,17 +43,15 @@ public class DocumentSearch {
     } catch(IOException e){
       System.out.println("Could not read directory or file inside"+directoryString);
       e.printStackTrace();
+      System.exit(1);
     }
 
     Scanner in = new Scanner(System.in);
 
     //Loop until user enters invalid method
     do {
-      System.out.println("Enter Search Term: ");
-      term = in.nextLine();
-      System.out.println("Search Method: \n\t1) String Match:"+
-                          "\n\t2) Regex: \n\t3) Indexed: ");
-      method = in.nextLine();
+      term = queryTerm(in);
+      method = queryMethod(in);
       long timeBefore = System.currentTimeMillis();
       switch(method){
         case "1":
@@ -66,8 +64,19 @@ public class DocumentSearch {
           printResults(indexedSearcher.search(term));
           break;
         }
-      System.out.println("Your search took "+(System.currentTimeMillis()-timeBefore)+" ms.");
+      System.out.println("Your search took "+(System.currentTimeMillis()-timeBefore)+"ms.");
     } while(method.equals("1") || method.equals("2") || method.equals("3"));
+  }
+
+  private static String queryMethod(Scanner in) {
+    System.out.println("Search Method: \n\t1) String Match:"+
+                        "\n\t2) Regex: \n\t3) Indexed: ");
+    return in.nextLine();
+  }
+
+  private static String queryTerm(Scanner in) {
+    System.out.println("Enter Search Term: ");
+    return in.nextLine();
   }
 
   private static void printResults(List<Searcher.Result> results) {
