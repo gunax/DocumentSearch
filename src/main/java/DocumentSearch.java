@@ -30,7 +30,10 @@ public class DocumentSearch {
         regexSearcher.addText(file.getName(), content);
         indexedSearcher.addText(file.getName(), content);
       }
-    } catch(IOException e){}
+    } catch(IOException e){
+      System.out.println("Could not read directory or file inside"+directoryString);
+      e.printStackTrace();
+    }
 
     Scanner in = new Scanner(System.in);
     do {
